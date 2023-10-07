@@ -1,0 +1,37 @@
+import requests
+
+# Function to fetch odds data from an API (replace with a real API)
+def fetch_odds():
+    # Replace this URL with the actual API endpoint
+    api_url = "/sapi/v1/futures/histDataLink"
+    
+    try:
+        response = requests.get(api_url)
+        data = response.json()
+        return data
+    except Exception as e:
+        print("Error fetching odds data:", e)
+        return None
+
+# Function to make a simple prediction (replace with your own logic)
+def make_prediction(odds_data):
+    if odds_data:
+        # Replace with your own prediction logic based on odds data
+        home_team_odds = odds_data.get("home_team_odds")
+        away_team_odds = odds_data.get("away_team_odds")
+        
+        if home_team_odds < away_team_odds:
+            return "Bet on the home team."
+        else:
+            return "Bet on the away team."
+    else:
+        return "No odds data available."
+
+# Main function
+def main():
+    odds_data = fetch_odds()
+    prediction = make_prediction(odds_data)
+    print("Prediction:", prediction)
+
+if __name__ == "__main__":
+    main()
